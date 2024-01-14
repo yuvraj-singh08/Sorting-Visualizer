@@ -1,0 +1,11 @@
+.nav-link{
+    transition: 300;
+}
+
+.nav-link:hover{
+    transform: scale(1.03);
+}
+
+.nav-link:active{
+    transform: scale(0.90);
+}
