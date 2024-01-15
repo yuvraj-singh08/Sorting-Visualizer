@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react'
-import { getRandomInt } from '../functions/getRandomInt';
+import { useEffect } from 'react'
 import './SortingVisualizer.css';
-import { setNewArray } from '../functions/setNewArray';
+import { useSelector } from 'react-redux';
 
-function SortingVisualizer({arrSize, activeAlgo, arr }) {
-
+function SortingVisualizer() {
+    const arr = useSelector((state) => state.array.arr)
     useEffect(() => {
-        
-    }, [arr,arrSize])
+
+    }, [arr])
 
     return (
         <div className='container'>

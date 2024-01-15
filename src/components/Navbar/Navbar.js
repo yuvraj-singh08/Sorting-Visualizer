@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './Navbar.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { setAlgo } from '../../features/algo/algoSlice';
+import { setSize } from '../../features/array/arraySlice';
 
-function Navbar({ activeAlgo, setActiveAlgo, arrSize, setArrSize }) {
+function Navbar() {
     const algorithms = [
         {
             index: 0,
@@ -24,12 +27,18 @@ function Navbar({ activeAlgo, setActiveAlgo, arrSize, setArrSize }) {
         }
     ];
 
+    const dispatch = useDispatch();
+    const currentAlgo = useSelector((state) => state.algo.currentAlgo);
+    const arrSize = useSelector((state) => state.array.size)
+
+
     function handleAlgoChange(algoIndex) {
-        setActiveAlgo(algoIndex);
+        dispatch(setAlgo(algoIndex));
     }
 
     function handleSliderChange(e) {
-        setArrSize(e.target.value);
+        console.log("Colled")
+        dispatch(setSize(e.target.value))
     }
 
     useEffect(() => {
@@ -62,7 +71,7 @@ function Navbar({ activeAlgo, setActiveAlgo, arrSize, setArrSize }) {
                             >
                                 <button
                                     onClick={() => handleAlgoChange(data.index)}
-                                    className={`nav-link ${activeAlgo === data.index ? 'active' : ''
+                                    className={`nav-link ${currentAlgo === data.index ? 'active' : ''
                                         }`}
                                 >
                                     {data.name}

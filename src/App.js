@@ -3,18 +3,22 @@ import { useState, useEffect } from 'react';
 
 import SortingVisualizer from "./components/SortingVisualizer";
 import Navbar from "./components/Navbar/Navbar";
-import { setNewArray } from "./functions/setNewArray";
 import { swapRows } from "./functions/swapRows";
+
+import { useDispatch } from "react-redux";
+import { setSize } from "./features/array/arraySlice";
+
 // import { bubbleSort } from "./functions/bubbleSort";
 
 function App() {
   const [arr, setArr] = useState([]);
   const [activeAlgo, setActiveAlgo] = useState(null);
   const [arrSize, setArrSize] = useState(25);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setNewArray(arrSize, setArr);
-  }, [arrSize]);
+    dispatch(setSize(25))
+  }, [])
 
   async function bubbleSort() {
     for (let i = 0; i < arrSize - 1; i++) {
@@ -37,7 +41,7 @@ function App() {
   return (
     <>
       <Navbar arrSize={arrSize} setArrSize={setArrSize} activeAlgo={activeAlgo} setActiveAlgo={setActiveAlgo} />
-      <SortingVisualizer setArr = {setArr} arrSize={arrSize} activeAlgo={activeAlgo} arr={arr}></SortingVisualizer>
+      <SortingVisualizer setArr={setArr} arrSize={arrSize} activeAlgo={activeAlgo} arr={arr}></SortingVisualizer>
       <button onClick={bubbleSort}>Swap</button>
     </>
   );
