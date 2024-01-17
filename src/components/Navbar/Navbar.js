@@ -37,7 +37,6 @@ function Navbar() {
     }
 
     function handleSliderChange(e) {
-        console.log("Colled")
         dispatch(setSize(e.target.value))
     }
 
