@@ -57,7 +57,7 @@ function Navbar() {
                         <input
                             type="range"
                             min="8"
-                            max="60"
+                            max="200"
                             value={arrSize}
                             onChange={(handleSliderChange)}
                         />

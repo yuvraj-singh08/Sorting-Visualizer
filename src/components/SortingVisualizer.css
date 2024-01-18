@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
     background-color: rgb(0, 8, 37);
     margin: 0 200px;
     height: 90vh;
