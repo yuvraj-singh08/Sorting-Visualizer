@@ -29,7 +29,7 @@ function App() {
       setTimeout(() => {
         const { a, b } = animation[i]
         dispatch(swapElements({ index1: a, index2: b }))
-      }, (100 * i + 1))
+      }, ((1000/n) * i + 1))
     }
   }
 
