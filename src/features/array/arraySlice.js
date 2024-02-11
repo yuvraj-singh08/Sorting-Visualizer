@@ -13,6 +13,12 @@ const swapArrayElements = (array, a, b) => {
   return newArr;
 };
 
+function setArrayIndex(array, index, value) {
+  let newArr = [...array];
+  newArr[index] = value;
+  return newArr;
+}
+
 export const arraySlice = createSlice({
   name: 'arraySlice',
   initialState,
@@ -28,9 +34,13 @@ export const arraySlice = createSlice({
       const { index1, index2 } = action.payload;
       state.arr = swapArrayElements(state.arr, index1, index2);
     },
+    setIndex: (state, action) => {
+      const { index, value } = action.payload;
+      state.arr = setArrayIndex(state.arr, index, value)
+    }
   },
 });
 
-export const { setSize, swapElements, setArr } = arraySlice.actions;
+export const { setSize, swapElements, setArr, setIndex } = arraySlice.actions;
 
 export default arraySlice.reducer;

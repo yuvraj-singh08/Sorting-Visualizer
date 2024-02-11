@@ -1,4 +1,6 @@
-export default async function bubbleSort(arr) {
+import { swapElements } from "../features/array/arraySlice";
+
+async function bubbleSort(arr) {
     const n = arr.length
     const animation = []
     const copyArr = arr.slice()
@@ -18,3 +20,14 @@ export default async function bubbleSort(arr) {
     return animation
 }
 
+export default async function bubbleWrapper(arr, dispatch) {
+    const animation = await bubbleSort(arr);
+    console.log(animation)
+    let n = arr.length
+    for (let i = 0; i < animation.length; i++) {
+      setTimeout(() => {
+        const { a, b } = animation[i]
+        dispatch(swapElements({ index1: a, index2: b }))
+      }, ((1000 / n) * i + 1))
+    }
+  }

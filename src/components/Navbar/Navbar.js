@@ -6,8 +6,40 @@ import './Navbar.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAlgo } from '../../features/algo/algoSlice';
 import { setSize } from '../../features/array/arraySlice';
+import quickWrapper from '../../functions/quickSort';
+import bubbleWrapper from '../../functions/bubbleSort';
+import mergeWrapper from '../../functions/mergeSort';
 
 function Navbar() {
+
+    const arr = useSelector((state) => state.array.arr)
+    const n = arr.length;
+    const algo = useSelector((state) => state.algo.currentAlgo)
+    const dispatch = useDispatch();
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    useEffect(() => {
+        dispatch(setSize(7))
+    }, [])
+
+
+
+
+    function handleSort(arr) {
+        console.log(algo);
+        switch (algo) {
+            case 0: console.log("Executing: ", algo);
+                bubbleWrapper(arr, dispatch);
+                break;
+            case 1: console.log("Executing: ", algo);
+                mergeWrapper(arr, dispatch);
+                break;
+            case 2: console.log("Executing: ", algo);
+                quickWrapper(arr, dispatch);
+            default: console.log("Invalid Algo Selected");
+        }
+    }
     const algorithms = [
         {
             index: 0,
@@ -27,7 +59,6 @@ function Navbar() {
         }
     ];
 
-    const dispatch = useDispatch();
     const currentAlgo = useSelector((state) => state.algo.currentAlgo);
     const arrSize = useSelector((state) => state.array.size)
 
@@ -61,6 +92,9 @@ function Navbar() {
                             value={arrSize}
                             onChange={(handleSliderChange)}
                         />
+                    </div>
+                    <div className="button-container">
+                        <button onClick={() => { handleSort(arr) }}>Swap</button>
                     </div>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         {algorithms.map((data) => (
