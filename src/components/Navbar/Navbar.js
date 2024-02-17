@@ -94,7 +94,7 @@ function Navbar() {
                         />
                     </div>
                     <div className="button-container">
-                        <button onClick={() => { handleSort(arr) }}>Swap</button>
+                        <button onClick={() => { handleSort(arr) }}>Sort</button>
                     </div>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         {algorithms.map((data) => (

@@ -45,6 +45,6 @@ export default function quickWrapper(arr, dispatch) {
         setTimeout(() => {
             const { index1, index2 } = animation[i]
             dispatch(swapElements({ index1, index2 }))
-        }, ((5000 / n) * i + 1))
+        }, ((6000 / n) * i + 1))
     }
 }
